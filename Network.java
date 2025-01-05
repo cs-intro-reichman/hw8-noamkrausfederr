@@ -76,6 +76,7 @@ public class Network {
         if((name1 == null) || (name2 == null)) {
             return false;
         }
+
         String newName1 = "" + name1.charAt(0);
         newName1 = newName1.toUpperCase();
         newName1 += name1.substring(1,name1.length());
@@ -106,6 +107,11 @@ public class Network {
                 } 
         }
         if (inNetwork == false) {
+            return false;
+        }
+        if(newName1.equals(newName2)) {
+            return false;
+        } else if (getUser(newName1).follows(newName2)) {
             return false;
         }
         getUser(newName1).addFollowee(newName2);
