@@ -85,8 +85,6 @@ public class Network {
         newName2 += name2.substring(1,name2.length());
 
         // checks if the the first user is in the network
-        //bar, foo
-        //john, bar
         boolean inNetwork = false;
         for(int i = 0; i < userCount; i++) {
             // if the user is in the users array, the boolean variable
@@ -99,6 +97,7 @@ public class Network {
         if (inNetwork == false) {
             return false;
         }
+        //checks if thr next user is in the user array
         inNetwork = false;
         for(int i = 0; i < userCount; i++) {
                 if (users[i].getName().equals(newName2)) {
@@ -109,12 +108,16 @@ public class Network {
         if (inNetwork == false) {
             return false;
         }
+        //checks if the two users are the same person
         if(newName1.equals(newName2)) {
             return false;
-        } else if (getUser(newName1).follows(newName2)) {
+        } 
+        //checks if the second user already follows the first user
+        else if (getUser(newName1).follows(newName2)) { 
             return false;
         }
-        getUser(newName2).addFollowee(newName1);
+        //executes the addfollowee method
+        getUser(newName1).addFollowee(newName2);
         return inNetwork;
     }
     
@@ -123,6 +126,7 @@ public class Network {
     public String recommendWhoToFollow(String name) {
         int max = 0;
         int index = 0;
+        //if the user has no followers, i store the index of the first user with no followers
         if (getUser(name).getfCount() == 0) {
             for (int i = 0; i < userCount; i++) {
                 if(users[i].getName() == name) continue;
@@ -132,12 +136,14 @@ public class Network {
                 }
             }
         }
+        // if the user has atleast one follower, i store the first user's index that has the maximum 
+        // number of mutual followers
         else {
             for(int i = 0; i < userCount; i++) {
-                if (users[i].getName() == name) continue;
+                if (users[i].getName().equals(name)) continue;
                 int n = getUser(name).countMutual(users[i]);
                 if (n > max) {
-                    n = max;
+                    max = n;
                     index = i;
                 }
             }

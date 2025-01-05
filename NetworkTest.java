@@ -7,19 +7,15 @@ public class NetworkTest {
         network.addUser("Dave");
         network.addUser("Eve");
         network.addUser("Frank");
-        network.addUser("Grace");
-        network.addUser("Hank");
-        network.addFollowee("Alice", "Frank");
+        network.addFollowee("Alice", "Bob");
         network.addFollowee("Bob", "Charlie");
         network.addFollowee("Charlie", "Dave");
-        network.addFollowee("Dave", "Eve");
-        network.addFollowee("Eve", "Frank");
-        network.addFollowee("Grace", "Eve");
-        network.addFollowee("Hank", "Eve");
-        network.addFollowee("Bob", "Dave");
-        network.addFollowee("Charlie", "Eve");
+        network.addFollowee("Eve", "Charlie");
+        network.addFollowee("Frank", "Charlie");
+        network.addFollowee("Alice", "Frank");
+        network.addFollowee("Frank", "Bob");
         System.out.println(network);
-        System.out.println(network.recommendWhoToFollow("Alice"));
+        System.out.println(network.recommendWhoToFollow("Eve"));
         /* 
         System.out.println("Testing the Network class...\n");
 
