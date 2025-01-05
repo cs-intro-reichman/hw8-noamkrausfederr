@@ -40,14 +40,16 @@
     public int getfCount() {
         return fCount;
     }
-    // keren, john, ron, linda, null, null
-    // john, ron, linda, null, null, null
+
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
+        String newName = "" + name.charAt(0);
+        newName = newName.toUpperCase();
+        newName += name.substring(1,name.length());
         //i use a for loop to go over the user's followers array,
         //if i find the name in the array i return true
         for (int i = 0; i < fCount; i++) {
-            if (follows[i].equals(name)) {
+            if (follows[i].equals(newName)) {
                 return true;
             }
         }
@@ -56,10 +58,12 @@
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
-
+        String newName = "" + name.charAt(0);
+        newName = newName.toUpperCase();
+        newName += name.substring(1,name.length());
         //i check if the user is already in the array, if so i return false
         for (int i = 0; i < fCount; i++) {
-            if (follows[i].equals(name)) {
+            if (follows[i].equals(newName)) {
                 return false;
             }
         }
@@ -68,7 +72,7 @@
         // if not, i add the given user to the followers array and raise 
         // the fcount by 1
         if(fCount != maxfCount) {
-            follows[fCount] = name;
+            follows[fCount] = newName;
             fCount++;
             return true;
         }
@@ -78,13 +82,16 @@
     /** Removes the given name from the follows list of this user. If successful, returns true.
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
+        String newName = "" + name.charAt(0);
+        newName = newName.toUpperCase();
+        newName += name.substring(1,name.length());
         int index = 0;
         Boolean remove = false;
 
         // i look for the index of the given name in the array and store 
         // it in a variable called index
         for (int i = 0; i < fCount; i++) {
-            if (follows[i].equals(name)) {
+            if (follows[i].equals(newName)) {
                 index = i;
                 remove = true;
                 break;
@@ -108,7 +115,7 @@
         // i check to see if i removed the name properly and if not, 
         // i return false
         for (int i = 0; i < fCount; i++) {
-            if (follows[i].equals(name)) {
+            if (follows[i].equals(newName)) {
                 remove = false;
                 break;
             }
