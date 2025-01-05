@@ -185,11 +185,12 @@ public class Network {
         if (userCount == 0){
             return "Network:";
         }
-        String ans = "Network: " + "\n";
+        String ans = "Network:" + "\n";
         for (int i = 0; i < userCount - 1; i++) {
             ans = ans + users[i].toString() + "\n";
         }
         ans += users[userCount - 1].toString();
+        ans.trim();
         return ans;
     }
 }
