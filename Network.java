@@ -46,6 +46,9 @@ public class Network {
     *  If the given name is already a user in this network, does nothing and returns false;
     *  Otherwise, creates a new user with the given name, adds the user to this network, and returns true. */
     public boolean addUser(String name) {
+        if (name == null) {
+            return false;
+        }
         String newName = "" + name.charAt(0);
         newName = newName.toUpperCase();
         newName += name.substring(1,name.length());
@@ -70,9 +73,16 @@ public class Network {
      *  If any of the two names is not a user in this network,
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
+        String newName1 = "" + name1.charAt(0);
+        newName1 = newName1.toUpperCase();
+        newName1 += name1.substring(1,name1.length());
+        String newName2 = "" + name2.charAt(0);
+        newName2 = newName2.toUpperCase();
+        newName2 += name2.substring(1,name2.length());
+
         boolean inNetwork = false;
         for(int i = 0; i < userCount; i++) {
-            if (users[i].getName().equals(name1)) {
+            if (users[i].getName().equals(newName1)) {
                 inNetwork = true;
             } 
         }
