@@ -40,37 +40,104 @@
     public int getfCount() {
         return fCount;
     }
-
+    // keren, john, ron, linda, null, null
+    // john, ron, linda, null, null, null
     /** If this user follows the given name, returns true; otherwise returns false. */
     public boolean follows(String name) {
-        //// Replace the following statement with your code
+        //i use a for loop to go over the user's followers array,
+        //if i find the name in the array i return true
+        for (int i = 0; i < fCount; i++) {
+            if (follows[i].equals(name)) {
+                return true;
+            }
+        }
         return false;
     }
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
-        //// Replace the following statement with your code
+
+        //i check if the user is already in the array, if so i return false
+        for (int i = 0; i < fCount; i++) {
+            if (follows[i].equals(name)) {
+                return false;
+            }
+        }
+
+        // i check if the number of followers is at the maximum number,
+        // if not, i add the given user to the followers array and raise 
+        // the fcount by 1
+        if(fCount != maxfCount) {
+            follows[fCount] = name;
+            fCount++;
+            return true;
+        }
         return false;
     }
 
     /** Removes the given name from the follows list of this user. If successful, returns true.
      *  If the name is not in the list, does nothing and returns false. */
     public boolean removeFollowee(String name) {
-        //// Replace the following statement with your code
-        return false;
+        int index = 0;
+        Boolean remove = false;
+
+        // i look for the index of the given name in the array and store 
+        // it in a variable called index
+        for (int i = 0; i < fCount; i++) {
+            if (follows[i].equals(name)) {
+                index = i;
+                remove = true;
+                break;
+            }
+        }
+
+        // if the name is not in the array i return false;
+        if (remove == false){
+            return false;
+        }
+
+        // starting from the index, i move each name backwards one step
+        for (int i = index; i < fCount-1; i++) {
+            follows[i] = follows[i+1];
+        }
+        
+        // i change the last name to null and reduce the fcount by one
+        follows[fCount - 1] = null;
+        fCount--;
+
+        // i check to see if i removed the name properly and if not, 
+        // i return false
+        for (int i = 0; i < fCount; i++) {
+            if (follows[i].equals(name)) {
+                remove = false;
+                break;
+            }
+        }
+        return remove;
     }
 
     /** Counts the number of users that both this user and the other user follow.
     /*  Notice: This is the size of the intersection of the two follows lists. */
     public int countMutual(User other) {
-         //// Replace the following statement with your code
-        return 0;
+       int count  = 0;
+       // i count the number of users this account follows that the  
+       //the other account follows also and i return the count;
+       for (int j = 0; j < other.fCount; j++) { 
+            if (this.follows(other.follows[j])){
+                count++;
+            }
+        }
+        return count;
     }
 
     /** Checks is this user is a friend of the other user.
      *  (if two users follow each other, they are said to be "friends.") */
     public boolean isFriendOf(User other) {
-        //// Replace the following statement with your code
+        // i check if this user and the other user follow each other
+        // and return true if they both do and falsr otherwise
+        if (this.follows(other.name)&&(other.follows(this.name))){
+            return true;
+        }
         return false;
     }
     /** Returns this user's name, and the names that s/he follows. */
