@@ -88,13 +88,13 @@ public class Network {
         }
         if (inNetwork == false) {
             for(int i = 0; i < userCount; i++) {
-                if (!(users[i].getName().equals(name2))) {
+                if (!(users[i].getName().equals(newName2))) {
                     return false;
                 } 
             }
         }
         if (inNetwork = false) return false;
-        getUser(name2).addFollowee(name1);
+        getUser(newName1).addFollowee(newName2);
         return inNetwork;
     }
     
