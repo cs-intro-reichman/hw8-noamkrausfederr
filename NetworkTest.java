@@ -1,10 +1,25 @@
 public class NetworkTest {
     public static void main(String[] args) {
-        Network net = new Network(1000);
-        net.addUser("Foo");
-        net.addUser("Bar");
-        System.out.println(net.addFollowee("Bar", "Foo"));
-        System.out.println(net);
+        Network network = new Network(1000);
+        network.addUser("Alice");
+        network.addUser("Bob");
+        network.addUser("Charlie");
+        network.addUser("Dave");
+        network.addUser("Eve");
+        network.addUser("Frank");
+        network.addUser("Grace");
+        network.addUser("Hank");
+        network.addFollowee("Alice", "Frank");
+        network.addFollowee("Bob", "Charlie");
+        network.addFollowee("Charlie", "Dave");
+        network.addFollowee("Dave", "Eve");
+        network.addFollowee("Eve", "Frank");
+        network.addFollowee("Grace", "Eve");
+        network.addFollowee("Hank", "Eve");
+        network.addFollowee("Bob", "Dave");
+        network.addFollowee("Charlie", "Eve");
+        System.out.println(network);
+        System.out.println(network.recommendWhoToFollow("Alice"));
         /* 
         System.out.println("Testing the Network class...\n");
 

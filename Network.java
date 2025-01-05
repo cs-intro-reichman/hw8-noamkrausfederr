@@ -114,7 +114,7 @@ public class Network {
         } else if (getUser(newName1).follows(newName2)) {
             return false;
         }
-        getUser(newName1).addFollowee(newName2);
+        getUser(newName2).addFollowee(newName1);
         return inNetwork;
     }
     
