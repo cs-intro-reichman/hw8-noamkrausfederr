@@ -73,6 +73,9 @@ public class Network {
      *  If any of the two names is not a user in this network,
      *  or if the "follows" addition failed for some reason, returns false. */
     public boolean addFollowee(String name1, String name2) {
+        if((name1 == null) || (name2 == null)) {
+            return false;
+        }
         String newName1 = "" + name1.charAt(0);
         newName1 = newName1.toUpperCase();
         newName1 += name1.substring(1,name1.length());
@@ -80,20 +83,31 @@ public class Network {
         newName2 = newName2.toUpperCase();
         newName2 += name2.substring(1,name2.length());
 
+        // checks if the the first user is in the network
+        //bar, foo
+        //john, bar
         boolean inNetwork = false;
         for(int i = 0; i < userCount; i++) {
+            // if the user is in the users array, the boolean variable
+            // changes to true
             if (users[i].getName().equals(newName1)) {
                 inNetwork = true;
+                break;
             } 
         }
         if (inNetwork == false) {
-            for(int i = 0; i < userCount; i++) {
-                if (!(users[i].getName().equals(newName2))) {
-                    return false;
-                } 
-            }
+            return false;
         }
-        if (inNetwork = false) return false;
+        inNetwork = false;
+        for(int i = 0; i < userCount; i++) {
+                if (users[i].getName().equals(newName2)) {
+                    inNetwork = true;
+                break;
+                } 
+        }
+        if (inNetwork == false) {
+            return false;
+        }
         getUser(newName1).addFollowee(newName2);
         return inNetwork;
     }

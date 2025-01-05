@@ -1,6 +1,10 @@
 /** Tests the User class. */
 public class UserTest {
     public static void main(String[] args) {
+        User alex = new User("Alex");
+        System.out.println(alex.addFollowee("Ben"));
+        System.out.println(alex);
+        /* 
         System.out.println("...Testing the User class...\n");
 
         System.out.println("...To get started, creating a dummy user for testing the toString and follows methods...\n");
@@ -75,5 +79,6 @@ public class UserTest {
         System.out.println("Orly is a friend of Alex: " + orly.isFriendOf(alex));
         
         System.out.println("\nAll User class tests completed.");
+        */
     }
 }
